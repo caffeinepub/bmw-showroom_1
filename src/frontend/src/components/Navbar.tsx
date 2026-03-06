@@ -7,6 +7,7 @@ interface NavbarProps {
   activeCategory: string;
   onCategoryChange: (cat: string) => void;
   onBookTestDrive: () => void;
+  onScrollToTestDrive?: () => void;
 }
 
 const categories = [
@@ -21,6 +22,7 @@ export default function Navbar({
   activeCategory,
   onCategoryChange,
   onBookTestDrive,
+  onScrollToTestDrive,
 }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -87,6 +89,26 @@ export default function Navbar({
                 )}
               </button>
             ))}
+
+            {/* Test Drive nav link — visually distinct */}
+            <button
+              type="button"
+              data-ocid="nav.testdrive_link"
+              onClick={() => {
+                if (onScrollToTestDrive) onScrollToTestDrive();
+                else
+                  document
+                    .getElementById("test-drive")
+                    ?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="relative ml-2 px-4 py-2 text-sm font-bold transition-all rounded-sm text-primary hover:text-primary/80 flex items-center gap-1.5"
+            >
+              <span
+                className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"
+                aria-hidden
+              />
+              Test Drive
+            </button>
           </nav>
 
           {/* CTA */}
@@ -136,6 +158,30 @@ export default function Navbar({
                   {cat.label}
                 </button>
               ))}
+
+              {/* Test Drive mobile link */}
+              <button
+                type="button"
+                data-ocid="nav.testdrive_link"
+                onClick={() => {
+                  setMobileOpen(false);
+                  setTimeout(() => {
+                    if (onScrollToTestDrive) onScrollToTestDrive();
+                    else
+                      document
+                        .getElementById("test-drive")
+                        ?.scrollIntoView({ behavior: "smooth" });
+                  }, 100);
+                }}
+                className="text-left px-4 py-3 rounded-sm text-sm font-bold text-primary bg-primary/5 border border-primary/20 flex items-center gap-2 transition-colors hover:bg-primary/10"
+              >
+                <span
+                  className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"
+                  aria-hidden
+                />
+                Test Drive
+              </button>
+
               <Button
                 data-ocid="nav.primary_button"
                 onClick={() => {

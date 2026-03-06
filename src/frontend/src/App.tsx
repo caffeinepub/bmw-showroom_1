@@ -9,6 +9,7 @@ import FeaturedSection from "./components/FeaturedSection";
 import Footer from "./components/Footer";
 import HeroSection from "./components/HeroSection";
 import Navbar from "./components/Navbar";
+import TestDriveSection from "./components/TestDriveSection";
 
 export default function App() {
   const [activeCategory, setActiveCategory] = useState<string>("all");
@@ -38,16 +39,26 @@ export default function App() {
     document.getElementById("models")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const handleScrollToTestDrive = () => {
+    document
+      .getElementById("test-drive")
+      ?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div className="min-h-screen bg-background font-body noise-bg">
       <Navbar
         activeCategory={activeCategory}
         onCategoryChange={setActiveCategory}
         onBookTestDrive={() => setIsBookingOpen(true)}
+        onScrollToTestDrive={handleScrollToTestDrive}
       />
 
       <main>
-        <HeroSection onExplore={handleScrollToModels} />
+        <HeroSection
+          onExplore={handleScrollToModels}
+          onBookTestDrive={handleScrollToTestDrive}
+        />
         <BrandHighlights />
         <FeaturedSection onViewCar={handleViewCar} />
         <CarsGrid
@@ -55,6 +66,7 @@ export default function App() {
           onViewCar={handleViewCar}
           onCategoryChange={setActiveCategory}
         />
+        <TestDriveSection />
       </main>
 
       <Footer />

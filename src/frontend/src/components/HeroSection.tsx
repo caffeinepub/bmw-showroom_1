@@ -4,9 +4,13 @@ import { motion } from "motion/react";
 
 interface HeroSectionProps {
   onExplore: () => void;
+  onBookTestDrive: () => void;
 }
 
-export default function HeroSection({ onExplore }: HeroSectionProps) {
+export default function HeroSection({
+  onExplore,
+  onBookTestDrive,
+}: HeroSectionProps) {
   return (
     <section className="relative w-full h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
       {/* Background image */}
@@ -95,23 +99,24 @@ export default function HeroSection({ onExplore }: HeroSectionProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="mt-10 flex flex-row items-center justify-center gap-4 flex-wrap"
         >
           <Button
-            data-ocid="hero.primary_button"
-            onClick={onExplore}
+            data-ocid="hero.secondary_button"
+            onClick={onBookTestDrive}
             size="lg"
             className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold px-8 h-12 text-base rounded-sm shadow-bmw-glow transition-all hover:scale-105 hover:shadow-bmw-glow"
           >
-            Explore Models
+            Book a Test Drive
           </Button>
           <Button
+            data-ocid="hero.primary_button"
             variant="outline"
             size="lg"
             onClick={onExplore}
             className="border-border bg-transparent text-foreground hover:bg-secondary hover:border-primary/50 font-semibold px-8 h-12 text-base rounded-sm transition-all"
           >
-            View All Vehicles
+            Explore Models
           </Button>
         </motion.div>
 
