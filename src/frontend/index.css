@@ -1,0 +1,249 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------ */
+/* BMW Showroom — Cinematic Dark Luxury Design System                  */
+/* ------------------------------------------------------------------ */
+
+/* Cabinet Grotesk — display headings */
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("/assets/fonts/CabinetGrotesk-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Satoshi — body & UI text */
+@font-face {
+  font-family: "Satoshi";
+  src: url("/assets/fonts/Satoshi-Variable.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Geist Mono — spec values */
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.25rem;
+
+    /* BMW Dark Luxury Palette */
+    --background: 0.08 0.002 250;
+    --foreground: 0.96 0.005 250;
+
+    --card: 0.11 0.004 250;
+    --card-foreground: 0.96 0.005 250;
+
+    --popover: 0.13 0.005 250;
+    --popover-foreground: 0.96 0.005 250;
+
+    /* BMW Blue as primary */
+    --primary: 0.52 0.18 252;
+    --primary-foreground: 0.98 0 0;
+
+    --secondary: 0.16 0.006 250;
+    --secondary-foreground: 0.85 0.005 250;
+
+    --muted: 0.15 0.005 250;
+    --muted-foreground: 0.55 0.01 250;
+
+    /* Accent: BMW electric blue highlight */
+    --accent: 0.58 0.22 255;
+    --accent-foreground: 0.98 0 0;
+
+    --destructive: 0.62 0.22 27;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.22 0.008 250;
+    --input: 0.18 0.006 250;
+    --ring: 0.52 0.18 252;
+
+    --chart-1: 0.52 0.18 252;
+    --chart-2: 0.65 0.15 200;
+    --chart-3: 0.75 0.12 150;
+    --chart-4: 0.6 0.2 30;
+    --chart-5: 0.7 0.15 280;
+
+    --sidebar: 0.1 0.003 250;
+    --sidebar-foreground: 0.96 0.005 250;
+    --sidebar-primary: 0.52 0.18 252;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.16 0.006 250;
+    --sidebar-accent-foreground: 0.85 0.005 250;
+    --sidebar-border: 0.22 0.008 250;
+    --sidebar-ring: 0.52 0.18 252;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Satoshi", sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: "Cabinet Grotesk", sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+  }
+
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: oklch(0.08 0.002 250);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: oklch(0.28 0.01 250);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.52 0.18 252);
+  }
+}
+
+@layer utilities {
+  /* BMW Blue gradient text */
+  .gradient-text-bmw {
+    background: linear-gradient(135deg, oklch(0.75 0.14 252), oklch(0.52 0.22 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glass morphism effect */
+  .glass {
+    background: oklch(0.11 0.004 250 / 0.8);
+    backdrop-filter: blur(16px) saturate(1.4);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    border: 1px solid oklch(0.3 0.01 250 / 0.4);
+  }
+
+  .glass-strong {
+    background: oklch(0.09 0.003 250 / 0.92);
+    backdrop-filter: blur(24px) saturate(1.6);
+    -webkit-backdrop-filter: blur(24px) saturate(1.6);
+    border: 1px solid oklch(0.35 0.015 250 / 0.5);
+  }
+
+  /* BMW accent line */
+  .bmw-accent-line {
+    position: relative;
+  }
+  .bmw-accent-line::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: oklch(0.52 0.18 252);
+    border-radius: 2px;
+  }
+
+  /* Spec badge mono font */
+  .spec-value {
+    font-family: "Geist Mono", monospace;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  /* Image overlay gradient */
+  .img-overlay {
+    background: linear-gradient(
+      to top,
+      oklch(0.08 0.003 250 / 0.95) 0%,
+      oklch(0.08 0.003 250 / 0.5) 40%,
+      transparent 100%
+    );
+  }
+
+  /* BMW glow effect */
+  .bmw-glow {
+    box-shadow: 0 0 30px oklch(0.52 0.18 252 / 0.25), 0 0 60px oklch(0.52 0.18 252 / 0.1);
+  }
+
+  /* Text shadow for hero */
+  .hero-text-shadow {
+    text-shadow: 0 2px 40px oklch(0.08 0.003 250 / 0.8);
+  }
+}
+
+/* Noise texture overlay */
+.noise-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.03;
+}
+
+/* Car card hover state */
+.car-card {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.car-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 60px oklch(0.08 0.003 250 / 0.6),
+              0 0 0 1px oklch(0.52 0.18 252 / 0.3),
+              0 0 40px oklch(0.52 0.18 252 / 0.1);
+}
+
+/* Category badge colors */
+.badge-sports  { background: oklch(0.52 0.22 27 / 0.2);  color: oklch(0.75 0.18 27);  border: 1px solid oklch(0.52 0.22 27 / 0.4); }
+.badge-sedan   { background: oklch(0.52 0.18 252 / 0.2); color: oklch(0.72 0.15 252); border: 1px solid oklch(0.52 0.18 252 / 0.4); }
+.badge-suv     { background: oklch(0.52 0.18 140 / 0.2); color: oklch(0.72 0.15 140); border: 1px solid oklch(0.52 0.18 140 / 0.4); }
+.badge-electric { background: oklch(0.6 0.2 195 / 0.2);  color: oklch(0.78 0.18 195); border: 1px solid oklch(0.6 0.2 195 / 0.4); }
+
+/* Animated scan line for loading */
+@keyframes scan {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(400%); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(0.15 0.005 250) 25%,
+    oklch(0.22 0.008 250) 50%,
+    oklch(0.15 0.005 250) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s infinite;
+}
+
+/* Focus ring override for accessibility */
+:focus-visible {
+  outline: 2px solid oklch(0.52 0.18 252);
+  outline-offset: 3px;
+}
